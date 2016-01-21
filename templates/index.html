@@ -1,0 +1,288 @@
+<html>
+	<head>
+		 <title>Wingify Store | Register</title>
+		 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
+		 <style type="text/css">
+		 	nav {
+				    color: #fff;
+				    background-color: #E45D75;
+				    width: 100%;
+				    height: 56px;
+				    line-height: 56px;
+				}
+
+			pre
+			{
+				background-color: silver;
+			}
+		 </style>
+		 <script type="text/javascript">
+		  $(document).ready(function(){
+      			$('.modal-trigger').leanModal()
+		    });
+		  </script>
+	</head>
+	<body>
+		<nav>
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo">Store API</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a href="#">Documentation</a></li>
+		        <li><a class="modal-trigger" href="#modal1">Register</a></li>
+		      </ul>
+		    </div>
+  		</nav>
+
+  		{%if info %}
+  		<div class="card">
+  			<div class="card-content">
+				<div class="row center">
+				    <p class="red-text">{{info}}</p>
+				</div>
+			</div>
+		</div>
+		{%endif%}
+
+
+		<div>
+		    <div class="row">
+		    	<h4 class="red-text center-align">API DOCUMENTATION</h3>
+		    		<hr>
+		    </div>
+		    <div class="row">
+		    	<ul class="collapsible popout" data-collapsible="expandable">
+		    		<li>
+		    		<div class="collapsible-header active">
+		    			<blockquote><h5>Introduction</h5></blockquote>
+		    		</div>
+		    		<div class="collapsible-body">
+		    		<p>This is a store api written in python. As this service is only for authenticated user, so you have to register for the same. Once you register you will receive API ID and API Key which has to be provided for Authentication.(Api uses BasicAuth)<br>
+		    		API Requests, Url and Functions are descibed in the table below:-
+		    		<table class="bordered striped">
+		    			<thead>
+		    				<tr>
+		    					<th>HTTP Request</th>
+		    					<th>Url</th>
+		    					<th>Function</th>
+		    				</tr>
+		    			</thead>
+		    			<tbody>
+		    				<tr>
+		    					<td>GET</th>
+		    					<td>http://storeapi-snapego.rhcloud.com/store/api/items</td>
+		    					<td>Will return a json containing all the items in the store</td>
+		    				</tr>
+		    				<tr>
+		    					<td>POST</td>
+		    					<td>http://storeapi-snapego.rhcloud.com/store/api/items</td>
+		    					<td>Will add item to the store and give relevant resonse.Expects you to provide a json.</td>
+		    				</tr>
+		    				<tr>
+		    					<td>PUT</td>
+		    					<td>http://storeapi-snapego.rhcloud.com/store/api/items/(item id)</td>
+		    					<td>Will update the Item associated with given item id.Expects you to provide a json.</td>
+		    				</tr>
+		    				<tr>
+		    					<td>Delete</td>
+		    					<td>http://storeapi-snapego.rhcloud.com/store/api/items/(item id)</td>
+		    					<td>Will delete the Item associated with given item id.</td>
+		    				</tr>
+		    				<tr>
+		    					<td>GET</th>
+		    					<td>http://storeapi-snapego.rhcloud.com/store/api/items/search/(args)</td>
+		    					<td>Will return a json containing search result</td>
+		    				</tr>
+		    			</tbody>
+		    		</table>
+		    		</div>
+		 			</li>
+		 			<li>
+				    	<div class="collapsible-header">
+				    		<blockquote><h5>Responses </h5></blockquote>
+				    	</div>
+				    	<div class="collapsible-body">
+				    		<p>Response code and thier Meanings are as follows.
+				    		<table class="bordered striped">
+				    			<thead>
+				    				<tr>
+				    					<th>Response Code</th>
+				    					<th>Meaning</th>
+				    				</tr>
+				    			</thead>
+				    			<tbody>
+				    				<tr>
+				    					<td>400</td>
+				    					<td>Bad Request</td>
+				    				</tr>
+				    				<tr>
+				    					<td>200</td>
+				    					<td>Successfully Created</td>
+				    				</tr>
+				    				<tr>
+				    					<td>204</td>
+				    					<td>Successfully Updated/Deleted.</td>
+				    				</tr>
+				    				<tr>
+				    					<td>404</td>
+				    					<td>Not Found</td>
+				    				</tr>
+				    			</tbody>
+				    		</table>
+				    	</div>
+				 	</li>
+				 	<li>
+				    	<div class="collapsible-header">
+				    		<blockquote><h5>Add Item</h5></blockquote>
+				    	</div>
+				    	<div class="collapsible-body">
+				    		<p>
+				    		<strong>Request Type:</strong> POST</br>
+				    		<strong>URL :</strong>http://storeapi-snapego.rhcloud.com/store/api/items</br>
+				    		<strong>Content Type:</strong>application/json</br>
+							<strong>Response on Sucess: </strong>Created Item Json and Response 201.
+				    		</p>
+				    		<div class="row"><p>
+				    		Example of Json:
+<pre class="col l8 offset-l1">
+	
+	{
+	  "name": "Item One",
+	  "description": "This is First Item",
+	  "price": 3000,
+	  "quantity": 11,
+	  "seller": "Nishant",
+	  "category": "ABC"
+	}
+
+**name, description and price are compulsory elements
+</pre></p></div>
+							<div class="row">
+								<p>Below is the image that shows request hit using Postman</p>
+								<img src="static/additem.png">
+								<br>
+							</div>
+							</div>
+							</li>
+							<li>
+					    	<div class="collapsible-header">
+					    		<blockquote><h5>Updating Element</h5></blockquote>
+					    	</div>
+					    	<div class="collapsible-body">
+					    		<p>
+				    		<strong>Request Type:</strong> PUT</br>
+				    		<strong>URL :</strong>http://storeapi-snapego.rhcloud.com/store/api/items/(item_id)</br>
+				    		<strong>Content Type:</strong>application/json</br>
+							<strong>Response on Sucess: </strong>Updated Item Json and Response Code 204.
+				    		</p>
+				    		<div class="row"><p>
+				    		Example of Json:
+<pre class="col l8 offset-l1">
+	
+	{
+	  "description": "This item is updated with new price and category",
+	  "price": 4000,
+	  "quantity": 9,
+	  "seller": "New Seller",
+	  "category": "New Category"
+	}
+
+**You are supposed to send the keys that you want to update. 
+Nothing is compulsary but empty json will raise bad request.
+In this exampe I am not updating item name.
+</pre></p></div>
+							<div class="row">
+								<p>Below is the image that shows request hit using Postman</p>
+								<img src="static/putitem.png">
+								<br>
+							</div>
+							</div>
+							</li>
+							<li>
+							<div class="collapsible-header">
+					    		<blockquote><h5>Searching Element</h5></blockquote>
+					    	</div>
+					    	<div class="collapsible-body">
+					    	<p>
+				    		<strong>Request Type:</strong>GET</br>
+				    		<strong>URL :</strong>http://storeapi-snapego.rhcloud.com/store/api/items/search/(args)</br>
+							<strong>Response on Sucess: </strong>Search Result.
+				    		</p>
+				    		<p><strong>Search is supported for item name, category, seller , priceorder and their combinations.</strong><br>
+				    		For low to high price : lowtohigh=1<br>
+				    		For high to low price : hightolow=1</p>
+				    		<p>
+				    		<p>Below are some examples of search queries</p>
+				    		<div class="row">
+				    			<img src="static/search1.png"><br><br>
+				    			<img src="static/search2.png">
+				    		</div>
+				    		</p>
+				    	</div>
+				    	</li>
+
+	
+	</ul>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+				<form action="" method="post">
+			         <div class="row">
+			            <div class="input-field s12">
+			                  <input type="text" name="name" value="{{request.form.name}}" class="validate" required="required">
+			                  <label for="name">Name</label>
+			                </div>
+			              </div>
+			              <div class="row">
+			                <div class="input-field s12">
+			                  <input type="email" name="email" value="{{request.form.email}}" class="validate" required="required">
+			                  <label for="email">Email</label>
+			                </div>
+			              </div>
+			              <div class="row">
+			              <div class="input-field s12">
+			                  <input type="password" name="pswd" value="{{request.form.pswd}}" class="validate" required="required">
+			                  <label for="pswd">Password</label>
+			                </div>
+			              </div>
+			              <div class="row">
+			              <button class="btn waves-effect waves-light right" type="submit" name="action" >Register
+			              </button> 
+			              </div>
+			          </form>
+			 </div>
+		</div>
+	</body>
